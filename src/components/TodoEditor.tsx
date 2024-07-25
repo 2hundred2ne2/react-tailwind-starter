@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "./html/Button";
 import Input from "./html/Input";
 
 const TodoEditor = ({ addTodo }: { addTodo: (text: string) => void }) => {
+  console.log("Todo Editor");
   const [text, setText] = useState("");
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,4 +44,4 @@ const TodoEditor = ({ addTodo }: { addTodo: (text: string) => void }) => {
     </>
   );
 };
-export default TodoEditor;
+export default React.memo(TodoEditor);

@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "./html/Button";
 import CheckBox from "./html/CheckBox";
 import { TTodo } from "./Todo";
@@ -54,4 +55,4 @@ const TodoListItem = ({
     </>
   );
 };
-export default TodoListItem;
+export default React.memo(TodoListItem);

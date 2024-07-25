@@ -10,6 +10,7 @@ const TodoList = ({
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
 }) => {
+  console.log("todolist item");
   return (
     <>
       <ul className="flex flex-col gap-4 mt-4">

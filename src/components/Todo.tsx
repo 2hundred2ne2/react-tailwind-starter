@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import TodoEditor from "./TodoEditor";
 import TodoList from "./TodoList";
 
@@ -13,17 +13,17 @@ const Todo = () => {
     setTodos([...todos, { id: todos.length + 1, text, isCompleted: false }]);
   };
 
-  const deleteTodo = (id: number) => {
+  const deleteTodo = useCallback((id: number) => {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
-  };
+  }, []);
 
-  const toggleTodo = (id: number) => {
+  const toggleTodo = useCallback((id: number) => {
     setTodos((todos) =>
       todos.map((todo) =>
         todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
       )
     );
-  };
+  }, []);
   return (
     <>
       <div className="item-middle bg-black">

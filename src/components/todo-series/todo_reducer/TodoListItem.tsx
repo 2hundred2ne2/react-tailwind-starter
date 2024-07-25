@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { TTodoAction } from "../../../reducer/todoReducer";
+import { TTodoAction } from "../../../reducer/CartReducer";
 import Button from "../../html/Button";
 import CheckBox from "../../html/CheckBox";
 import { TTodo } from "../todo_props_memo/Todo";
@@ -14,6 +14,7 @@ const TodoListItem = ({
 }) => {
   // dispatch는 자동 메모이제이션이 됨
   console.log("TodoListItem");
+  console.log(JSON.stringify(todo));
   return (
     <>
       <li className="flex items-center justify-between border border-[#4F4F4F] h-[44px] px-[15px] rounded-lg bg-[rgba(53,56,62,0.05)] select-none shrink-0">
@@ -27,7 +28,7 @@ const TodoListItem = ({
               todo.isCompleted && "line-through"
             )}
           >
-            {todo.text}
+            {todo.text} {todo.price}원
           </span>
         </CheckBox>
         <Button

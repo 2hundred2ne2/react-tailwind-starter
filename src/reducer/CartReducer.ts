@@ -1,11 +1,16 @@
 export type TTodo = {
   id: number;
   text: string;
+  price: number;
+  totalPrice: number;
   isCompleted: boolean;
 };
 
 export type TTodoAction =
-  | { type: "ADD_TODO"; payload: string }
+  | {
+      type: "ADD_TODO";
+      payload: { text: string; price: number; totalPrice: number };
+    }
   | { type: "TOGGLE_TODO"; payload: number }
   | { type: "DELETE_TODO"; payload: number };
 
@@ -16,7 +21,9 @@ export const todoReducer = (todos: TTodo[], action: TTodoAction) => {
         ...todos,
         {
           id: Date.now(),
-          text: action.payload,
+          text: action.payload.text,
+          price: action.payload.price,
+          totalPrice: action.payload.totalPrice,
           isCompleted: false,
         },
       ];

@@ -1,31 +1,25 @@
 import React, { useState } from "react";
 import Button from "./html/Button";
 import Input from "./html/Input";
+import { TTodoAction } from "../reducer/todoReducer";
 
-const TodoEditor = ({ addTodo }: { addTodo: (text: string) => void }) => {
-  console.log("Todo Editor");
+const TodoEditor = ({
+  dispatch,
+}: {
+  dispatch: React.Dispatch<TTodoAction>;
+}) => {
+  // console.log("Todo Editor");
   const [text, setText] = useState("");
+
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addTodo(text);
-
-    //     setTodos((prevTodos) => [
-    //       ...prevTodos,
-    //       {
-    //         id: Date.now(),
-    //         text,
-    //         isCompleted: false, // true ,
-    //       },
-    //     ]
-    // );
-
+    dispatch({ type: "ADD_TODO", payload: text });
     setText("");
   };
 
   return (
     <>
-      {/* 등록 */}
-      <form action="" className="grid gap-4" onSubmit={onSubmitHandler}>
+      <form className="grid gap-4" onSubmit={onSubmitHandler}>
         <div className="flex gap-2">
           <Input
             type="text"

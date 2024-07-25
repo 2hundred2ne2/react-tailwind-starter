@@ -1,26 +1,18 @@
-import { TTodo } from "./Todo";
+import { TTodo, TTodoAction } from "../reducer/todoReducer";
 import TodoListItem from "./TodoListItem";
 
 const TodoList = ({
   todos,
-  toggleTodo,
-  deleteTodo,
+  dispatch,
 }: {
   todos: TTodo[];
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  dispatch: React.Dispatch<TTodoAction>;
 }) => {
-  console.log("todolist item");
   return (
     <>
-      <ul className="flex flex-col gap-4 mt-4">
+      <ul className="flex flex-col gap-4 mt-4 max-h-[284px] overflow-scroll">
         {todos.map((todo) => (
-          <TodoListItem
-            key={todo.id}
-            todo={todo}
-            toggleTodo={toggleTodo}
-            deleteTodo={deleteTodo}
-          />
+          <TodoListItem key={todo.id} todo={todo} dispatch={dispatch} />
         ))}
       </ul>
     </>

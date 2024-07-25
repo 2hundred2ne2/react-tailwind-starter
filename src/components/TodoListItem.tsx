@@ -1,36 +1,36 @@
-import React from "react";
+import { twMerge } from "tailwind-merge";
 import Button from "./html/Button";
 import CheckBox from "./html/CheckBox";
-import { TTodo } from "./Todo";
-import { twJoin, twMerge } from "tailwind-merge";
+import React from "react";
+import { TTodo, TTodoAction } from "../reducer/todoReducer";
+
 const TodoListItem = ({
   todo,
-  toggleTodo,
-  deleteTodo,
+  dispatch,
 }: {
   todo: TTodo;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  dispatch: React.Dispatch<TTodoAction>;
 }) => {
+  console.log("todolist item");
   return (
     <>
       <li className="flex items-center justify-between border border-[#4F4F4F] h-[44px] px-[15px] rounded-lg bg-[rgba(53,56,62,0.05)] select-none shrink-0">
         <CheckBox
           checked={todo.isCompleted}
-          onChange={() => toggleTodo(todo.id)}
+          onChange={() => dispatch({ type: "TOGGLE_TODO", payload: todo.id })}
         >
           <span
             className={twMerge(
-              "text-[#35383E]",
+              `text-[#35383E]`,
               todo.isCompleted && "line-through"
             )}
           >
-            {todo.text} / {todo.isCompleted.toString()}
+            {todo.text}
           </span>
         </CheckBox>
         <Button
           className="border border-[#4f4f4f] rounded w-[23px] h-[23px] flex justify-center items-center"
-          onClick={() => deleteTodo(todo.id)}
+          onClick={() => dispatch({ type: "DELETE_TODO", payload: todo.id })}
         >
           <svg
             width="15"
